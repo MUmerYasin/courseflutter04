@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:courseflutter04/navigateToPage.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,13 +33,12 @@ class _MyHomePageState extends State<MyHomePage> {
   String dropdownValue = 'One';
 
   String secondDropDownValue = 'Apple';
-  var items = ['Apple','Banana','Grapes', 'Orange','watermelon'];
+  var items = ['Apple', 'Banana', 'Grapes', 'Orange', 'watermelon'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
         title: Text(widget.title),
       ),
       body: SingleChildScrollView(
@@ -46,6 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            /// Title
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
@@ -53,6 +54,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(fontSize: 30.0),
               ),
             ),
+
+            ///CircleAvatar
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -78,6 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
               indent: 20,
               endIndent: 20,
             ),
+
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -98,6 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
 
+            /// Drop Down Button
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
@@ -110,33 +115,28 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
-
                   Expanded(
                     child: DropdownButton(
                       value: secondDropDownValue,
-
                       items: items.map((itemsname) {
                         return DropdownMenuItem(
                           value: itemsname,
                           child: Text(itemsname),
                         );
                       }).toList(),
-
                       onChanged: (String? newValue) {
                         setState(() {
                           secondDropDownValue = newValue!;
                         });
                       },
-
                     ),
                   ),
                 ],
-
               ),
             ),
 
             Divider(),
-            
+
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(
@@ -153,20 +153,17 @@ class _MyHomePageState extends State<MyHomePage> {
                         height: 3,
                         color: Colors.grey[300],
                       ),
-
                       onChanged: (String? newValue) {
                         setState(() {
                           dropdownValue = newValue!;
                         });
                       },
-
                       items: <String>['One', 'Two', 'Free', 'Four']
                           .map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
                         );
-
                       }).toList(),
                     ),
                   ),
@@ -197,6 +194,21 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                children: [
+                  ElevatedButton(onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => NavigateToNextPage()),);
+                  }, child: Text('More Details')),
+                ],
+              ),
+              // child: Text(
+              //   'Drop down Button:',
+              //   style: TextStyle(fontSize: 30.0),
+              // ),
             ),
 
 
