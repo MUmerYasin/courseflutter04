@@ -1,15 +1,23 @@
+import 'package:courseflutter04/heroTesting.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:courseflutter04/navigateToPage.dart';
 
+// import 'package:flutter/scheduler.dart';
+import 'package:url_strategy/url_strategy.dart';
+// import 'package:velocity_x/velocity_x.dart';
+
 void main() {
+  setPathUrlStrategy();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
+    //
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -62,8 +70,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   Expanded(
                     child: CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          "https://pbs.twimg.com/profile_images/1263605080718221312/CtV_UA01_400x400.jpg"),
+                      backgroundImage:
+                          AssetImage("assets/allimages/imgtesting.jpg"),
                     ),
                   ),
                   Expanded(
@@ -196,13 +204,36 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
 
+            /// Navigator // Url // link // jump one page to an others.
+
+            Divider(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Navigator in Flutter",
+                    style: TextStyle(fontSize: 20.0),
+                  ),
+                ],
+              ),
+            ),
+
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ElevatedButton(onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => NavigateToNextPage()),);
-                  }, child: Text('More Details')),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => NavigateToNextPage()),
+                        );
+                      },
+                      child: Text('More Details')),
                 ],
               ),
               // child: Text(
@@ -211,7 +242,68 @@ class _MyHomePageState extends State<MyHomePage> {
               // ),
             ),
 
+            /// Hero
 
+            Divider(),
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Hero Tesing",
+                    style: TextStyle(fontSize: 20.0),
+                  ),
+                ],
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Hero(
+                    tag: 'testinghero',
+                    child: SizedBox(
+                      height: 100.0,
+                      width: 100.0,
+                      child: Material(
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HeroTesting(),
+                              ),
+                            );
+                          },
+                          child: Image.asset('assets/allimages/imgtesting.jpg'),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            Divider(),
+
+            // Padding(
+            //   padding: const EdgeInsets.all(16.0),
+            //   child: Row(
+            //     children: [
+            //       ElevatedButton(onPressed: (){
+            //         Navigator.push(context, MaterialPageRoute(builder: (context) => NavigateToNextPage()),);
+            //       }, child: Text('More Details')),
+            //     ],
+            //   ),
+            //   // child: Text(
+            //   //   'Drop down Button:',
+            //   //   style: TextStyle(fontSize: 30.0),
+            //   // ),
+            // ),
           ],
         ),
       ),
